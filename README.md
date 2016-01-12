@@ -3,6 +3,7 @@ Code repo about python programming
 
 ## wsgi
 basic knowledge and usage of wsgi  
+http://www.cnblogs.com/wilber2013/p/4763067.html  
 
 ## algorithm
 some algorithm prictise with Python  
