@@ -1,4 +1,4 @@
-﻿### 避免可变对象作为默认参数
+﻿## 避免可变对象作为默认参数
 
 在使用函数的过程中，经常会涉及默认参数。在Python中，当使用可变对象作为默认参数的时候，就可能产生非预期的结果。  
 
@@ -31,15 +31,22 @@
 	def arg_init(a, b = Test()):  
 	    print(a)  
 
-结果为：
-
-	arg_init(1)  
+    arg_init(1)  
 	arg_init(3)  
 	arg_init(5)  
     
+    
+结果为：
+
+    Init Test
+    1
+    3
+    5
+	
+    
 从这个例子的结果就可以看到，`Test`类仅仅被实例化了一次，也就是说默认参数跟函数调用次数无关，仅仅在函数定义的时候被初始化一次。  
 
-#### 可变默认参数的正确使用
+### 可变默认参数的正确使用
 对于可变的默认参数，我们可以使用下面的模式来避免上面的非预期结果：
 
 	def append_item(a = 1, b = None):
@@ -59,7 +66,7 @@
 	[5]
 
 
-### Python中的作用域
+## Python中的作用域
 Python的作用域解析顺序为Local、Enclosing、Global、Built-in，也就是说Python解释器会根据这个顺序解析变量。  
 
 看一个简单的例子： 
@@ -99,7 +106,7 @@ Python的作用域解析顺序为Local、Enclosing、Global、Built-in，也就�
 	    
 	var_func()
 
-#### 问题一
+### 问题一
 但是，当我们通过下面的方式使用变量的时候，就会产生问题了：
 
 	num = 0
@@ -116,7 +123,7 @@ Python的作用域解析顺序为Local、Enclosing、Global、Built-in，也就�
 
   
 
-#### 问题二
+### 问题二
 上面的错误还是比较明显的，还有一种比较隐蔽的错误形式如下：
 
 	li = [1, 2, 3]
@@ -157,7 +164,7 @@ Python的作用域解析顺序为Local、Enclosing、Global、Built-in，也就�
 	    
 	bar()
     
-### 类属性隐藏
+## 类属性隐藏
 在Python中，有类属性和实例属性。类属性是属于类本身的，被所有的类实例共享。  
 
 类属性可以通过类名访问和修改，也可以通过类实例进行访问和修改。但是，当实例定义了跟类同名的属性后，类属性就被隐藏了。  
@@ -233,7 +240,7 @@ Python的作用域解析顺序为Local、Enclosing、Global、Built-in，也就�
 	{'__module__': '__main__', '__doc__': None}
     
     
-### tuple是“可变的”    
+## tuple是“可变的”    
 在Python中，tuple是不可变对象，但是这里的不可变指的是tuple这个容器总的元素不可变（确切的说是元素的id），但是元素的值是可以改变的。
 
 	tpl = (1, 2, 3, [4, 5, 6])
@@ -255,7 +262,7 @@ Python的作用域解析顺序为Local、Enclosing、Global、Built-in，也就�
 	36764576
 	38639896
 
-### Python的深浅拷贝
+## Python的深浅拷贝
 在对Python对象进行赋值的操作中，一定要注意对象的深浅拷贝，一不小心就可能踩坑了。  
 
 当使用下面的操作的时候，会产生浅拷贝的效果：
@@ -310,7 +317,7 @@ Python的作用域解析顺序为Local、Enclosing、Global、Built-in，也就�
 	print wilber
 	print [id(ele) for ele in wilber]
 
-### 模块循环依赖
+## 模块循环依赖
 在Python中使用`import`导入模块的时候，有的时候会产生模块循环依赖，例如下面的例子，`module_x`模块和`module_y`模块相互依赖，运行`module_y.py`的时候就会产生错误。
 
 	# module_x.py
