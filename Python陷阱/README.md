@@ -117,7 +117,7 @@ Python的作用域解析顺序为Local、Enclosing、Global、Built-in，也就�
 	    
 	var_func()
     
-结果如下，之所以产生这个错误，就是因为我们在`var_func`中给`num`变量进行了赋值，所以Python解释器会认为`num`是`var_func`作用域的本地变量，但是当代码执行到`print "num is :", num`语句的时候，`num`还是未定义。：
+结果如下，之所以产生这个错误，就是因为我们在`var_func`中给`num`变量进行了赋值，所以Python解释器会认为`num`是`var_func`作用域的本地变量，但是当代码执行到`print "num is :", num`语句的时候，`num`还是未定义。
 
 	UnboundLocalError: local variable 'num' referenced before assignment
 
@@ -342,7 +342,7 @@ Python的作用域解析顺序为Local、Enclosing、Global、Built-in，也就�
 
 当然，上面的问题也是可以解决的，常用的解决办法就是把引用关系搞清楚，让某个模块在真正需要的时候再导入（一般放到函数里面）。  
 
-对于上面的例子，就可以把`module_x.py`
+对于上面的例子，就可以把`module_x.py`修改为如下形式，在函数内部导入`module_y`：
 
 
 	# module_x.py
